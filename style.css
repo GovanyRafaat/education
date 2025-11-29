@@ -1,0 +1,67 @@
+/* --- نمط فضائي عصري — كبير وواضح --- */
+:root{
+--bg1: #04061a; /* داكن */
+--bg2: #081233; /* تدرج */
+--neon1: #7df9ff; /* أزرق فسفوري */
+--neon2: #b65dff; /* بنفسجي */
+--accent: #ffcf5c; /* أصفر لطيف */
+--card: rgba(255,255,255,0.03);
+--glass: rgba(255,255,255,0.04);
+}
+
+
+*{box-sizing:border-box;font-family: 'Segoe UI', Tahoma, Arial, sans-serif}
+html,body{height:100%;margin:0;background: radial-gradient(ellipse at bottom right,var(--bg2),var(--bg1));color:#e6eef8}
+
+
+/* نجوم في الخلفية */
+body::before{content:'';position:fixed;inset:0;background-image:radial-gradient(#ffffff11 1px,#0000 1px);background-size:40px 40px;opacity:0.6;mix-blend-mode:overlay;pointer-events:none}
+
+
+.logo{font-size:1.6rem;color:var(--neon2);text-shadow:0 0 12px #b65dff}
+.nav{display:flex;justify-content:space-between;align-items:center;padding:20px 40px}
+.nav .nav-buttons a{margin-left:12px}
+
+
+.hero{padding:40px 20px;min-height:40vh;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center}
+.hero h2{font-size:2.1rem;margin:10px 0;color:var(--neon1);text-shadow:0 0 18px #7df9ff}
+.hero p{max-width:760px}
+.cta{display:inline-block;margin-top:16px;padding:12px 28px;border-radius:999px;background:linear-gradient(90deg,var(--neon1),var(--neon2));color:#041026;text-decoration:none;font-weight:700}
+
+
+.cards{display:flex;gap:20px;padding:30px;flex-wrap:wrap;justify-content:center}
+.card{background:linear-gradient(180deg,rgba(255,255,255,0.02),rgba(255,255,255,0.01));backdrop-filter:blur(6px);padding:20px;border-radius:14px;min-width:260px;box-shadow:0 6px 24px rgba(0,0,0,0.6)}
+.btn{display:inline-block;padding:8px 12px;border-radius:8px;text-decoration:none;background:var(--glass);color:var(--neon1);border:1px solid rgba(255,255,255,0.06)}
+.btn.primary{background:linear-gradient(90deg,var(--neon2),var(--neon1));color:#041026;border:none}
+.btn.whatsapp{background:linear-gradient(90deg,#25D366,#128C7E);color:#fff}
+
+
+.footer{padding:22px;text-align:center}
+
+
+/* صفحة تسجيل دخول */
+.login-page{display:flex;align-items:center;justify-content:center;min-height:80vh}
+.auth-card{width:400px;background:linear-gradient(180deg,rgba(255,255,255,0.02),rgba(255,255,255,0.01));padding:20px;border-radius:12px;box-shadow:0 8px 40px rgba(0,0,0,0.7)}
+.auth-card h2{color:var(--neon1);margin-top:0}
+.auth-card input{width:100%;padding:10px;margin:6px 0 12px;border-radius:8px;border:1px solid rgba(255,255,255,0.04);background:transparent;color:inherit}
+.auth-actions{display:flex;gap:10px}
+.note{font-size:13px;color:#bcd8ffcc}
+
+
+/* Modal */
+.modal{position:fixed;inset:0;display:flex;align-items:center;justify-content:center;background:rgba(2,6,20,0.6)}
+.modal.hidden{display:none}
+.modal-inner{background:linear-gradient(180deg,rgba(255,255,255,0.03),rgba(255,255,255,0.02));padding:20px;border-radius:12px;width:360px}
+
+
+/* صفحة المحاضرات */
+.mini-header{display:flex;justify-content:space-between;padding:18px 30px;align-items:center}
+.lectures-container{display:flex;gap:20px;padding:20px;flex-wrap:wrap}
+.upload-card{flex:1;min-width:320px;background:var(--card);padding:18px;border-radius:12px}
+.lectures-list{flex:2;min-width:320px;background:var(--card);padding:18px;border-radius:12px}
+#list .lec{margin-bottom:16px;padding:12px;border-radius:10px;background:linear-gradient(90deg,rgba(255,255,255,0.02),rgba(255,255,255,0.01))}
+#list video{width:100%;max-width:500px;height:500px;display:block;border-radius:8px;margin-top:8px}
+
+
+/* responsive */
+@media(max-width:900px){.cards{flex-direction:column;padding:12px}.hero h2{font-size:1.4rem}}
