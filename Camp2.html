@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<title>Camp</title>
+<link rel="stylesheet" href="style.css">
+
+  <header class="hero">
+    <div class="nav">
+      </div>
+    </div>
+    <div class="hero-content">
+      <h2>قيصر التاريخ</h2>
+      <p>       شعارنا  التفوق وليس النجاح</p>
+    </div>
+  </header>
+
+<style>
+/* شكل المربعات */
+.camp-box {
+  background: #111827;
+  margin: 20px 0;
+  padding: 15px;
+  border-radius: 10px;
+  border: 1px solid #222;
+}
+
+.camp-header {
+  background: #8a0d28;
+  padding: 15px;
+  color: #fff;
+  font-size: 22px;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+.camp-content {
+  display: none;
+  margin-top: 10px;
+}
+
+.item {
+  background: #2b2727;
+  padding: 10px;
+  color: #fff;
+  margin-bottom: 10px;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+/* صفحة الامتحان */
+.exam-container {
+  background: #1f2937;
+  padding: 20px;
+  border-radius: 10px;
+  color: #fff;
+  margin-top: 20px;
+}
+
+.question {
+  margin-bottom: 20px;
+  padding: 15px;
+  background: #2d2d2d;
+  border-radius: 10px;
+}
+
+.correct {
+  background: #0f5132 !important; /* أخضر */
+}
+
+.wrong {
+  background: #842029 !important; /* أحمر */
+}
+
+.options label {
+  display: block;
+  margin: 8px 0;
+  cursor: pointer;
+}
+
+.submit-btn {
+  padding: 12px 20px;
+  background: #8a0d28;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 18px;
+  margin-top: 10px;
+}
+</style>
+
+</head>
+<body>
+
+<div class="container">
+
+  <!-- المحاضرة الأولى -->
+  <div class="camp-box">
+    <div class="camp-header" onclick="toggleBox('lec1')">
+      المحاضرة الأولى
+    </div>
+
+    <div id="lec1" class="camp-content">
+
+      <div class="item" onclick="openVideo('camp2.mp4')">
+        عرض المحاضرة الأولى
+      </div>
+
+      <div class="item" onclick="startExam()">
+        الامتحان
+      </div>
+
+    </div>
+  </div>
+
+  <!-- المحاضرة الثانية -->
+  <div class="camp-box">
+    <div class="camp-header" onclick="openSecondLecture()">
+      المحاضرة الثانية
+    </div>
+
+    <div id="lec2" class="camp-content">
+      <div class="item" onclick="openVideo('camp3.mp4')">
+        عرض المحاضرة الثانية
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<!-- مكان ظهور الامتحان -->
+<div id="examArea"></div>
+
+<script>
+
+// فتح و غلق المربعات
+function toggleBox(id){
+  let box = document.getElementById(id);
+  box.style.display = (box.style.display === "block") ? "none" : "block";
+}
+
+// فتح فيديو
+function openVideo(name){
+  window.location.href = name;
+}
+
+// مفتاح النتيجة
+const username = localStorage.getItem("current_user");
+const examKey = `camp_exam_score_${username}`;
+
+// -------------------------
+//  تشغيل صفحة الامتحان
+// -------------------------
+function startExam(){
+  if(localStorage.getItem(examKey)){
+    alert("لقد قمت بحل الامتحان مسبقًا.\nدرجتك: " + localStorage.getItem(examKey) + " / 3");
+    return;
+  }
+
+  document.getElementById("examArea").innerHTML = `
+    <div class="exam-container">
+
+      <div id="q1" class="question">
+        <h3>س1: تشابهت كل من مكه ويثرب من حيث... ؟</h3>
+        <div class="options">
+          <label><input type="radio" name="q1" value="1"> التحالف مع الروم</label>
+          <label><input type="radio" name="q1" value="2"> التحالف مع الفرس</label>
+          <label><input type="radio" name="q1" value="3"> مميزات الموقع الجعرافي</label>
+        </div>
+      </div>
+
+      <div id="q2" class="question">
+        <h3>س2: ساءت العلاقات بين دولتي الغساسنه والحيرة لعوامل...</h3>
+        <div class="options">
+          <label><input type="radio" name="q2" value="1"> ثقافيه </label>
+          <label><input type="radio" name="q2" value="2"> علميه </label>
+          <label><input type="radio" name="q2" value="3"> سياسيه </label>
+          <label><input type="radio" name="q2" value="4"> عقائدية </label>
+        </div>
+      </div>
+
+      <div id="q3" class="question">
+        <h3>س3: هجرة اليهود من الشم الي يثرب ترجع الي اسباب...</h3>
+        <div class="options">
+          <label><input type="radio" name="q3" value="1"> دينيه </label>
+          <label><input type="radio" name="q3" value="2"> اجتماعيه </label>
+          <label><input type="radio" name="q3" value="3"> اقتصاديه </label>
+          <label><input type="radio" name="q3" value="4"> فكريه </label>
+        </div>
+      </div>
+
+      <button class="submit-btn" onclick="submitExam()">إرسال الامتحان</button>
+    </div>
+  `;
+}
+
+// -------------------------
+//      تصحيح الامتحان
+// -------------------------
+function submitExam(){
+
+  let answers = {
+    q1: "3",
+    q2: "3",
+    q3: "1"
+  };
+
+  let score = 0;
+
+  Object.keys(answers).forEach(q => {
+    let selected = document.querySelector(`input[name="${q}"]:checked`);
+    let box = document.getElementById(q);
+
+    if(!selected){
+      box.classList.add("wrong");
+      return;
+    }
+
+    if(selected.value === answers[q]){
+      score++;
+      box.classList.add("correct");
+    } else {
+      box.classList.add("wrong");
+    }
+  });
+
+  // حفظ النتيجة
+  localStorage.setItem(examKey, score);
+
+  alert("تم إرسال الامتحان.\nدرجتك: " + score + " / 3");
+
+  if(score >= 1){
+    document.getElementById("lec2").style.display = "block";
+    alert("تم فتح المحاضرة الثانية!");
+  }
+}
+
+// -------------------------
+//  فتح المحاضرة الثانية
+// -------------------------
+function openSecondLecture(){
+  if(!localStorage.getItem(examKey)){
+    alert("يجب إنهاء الامتحان أولاً.");
+    return;
+  }
+
+  toggleBox("lec2");
+}
+
+</script>
+
+</body>
+</html>

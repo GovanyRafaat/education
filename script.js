@@ -56,8 +56,13 @@ function setupAuth(){
         let found = manualUsers.find(u => u.username === user && u.password === pass);
 
         if(found){
+
+            // ⭐ أهم إضافة — علشان كل يوزر يمتحن لوحده
+            localStorage.setItem("current_user", found.username);
+
             // فتح صفحة اليوزر المحددة مسبقًا
             window.location.href = found.page;
+
         } else {
             alert("خطأ في اسم المستخدم أو كلمة السر");
         }
