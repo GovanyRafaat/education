@@ -95,24 +95,42 @@
 
 <div class="container">
 
-  <!-- المحاضرة الأولى -->
-  <div class="camp-box">
-    <div class="camp-header" onclick="toggleBox('lec1')">
-      المحاضرة الأولى
-    </div>
-
-    <div id="lec1" class="camp-content">
-
-      <div class="item" onclick="openVideo('camp2.mp4')">
-        عرض المحاضرة الأولى
-      </div>
-
-      <div class="item" onclick="startExam()">
-        الامتحان
-      </div>
-
-    </div>
+ <!-- المحاضرة الأولى -->
+<div class="camp-box">
+  <div class="camp-header" onclick="toggleBox('lec1')">
+    المحاضرة الأولى
   </div>
+
+  <div id="lec1" class="camp-content">
+
+    <div class="item"
+         data-video="https://www.youtube-nocookie.com/embed/SLpEMIUxAKM?rel=0&modestbranding=1&controls=1"
+         onclick="openYoutubeVideo(this)">
+      عرض المحاضرة الأولى
+    </div>
+
+    <div class="item" onclick="startExam()">
+      الامتحان
+    </div>
+
+  </div>
+</div>
+
+<!-- نافذة عرض الفيديو -->
+<div id="videoModal" class="video-modal">
+  <div class="video-box">
+    <span class="close-btn" onclick="closeVideo()">✖</span>
+    <iframe
+      id="youtubeFrame"
+      width="100%"
+      height="100%"
+      frameborder="0"
+      allow="autoplay; encrypted-media"
+      allowfullscreen>
+    </iframe>
+  </div>
+</div>
+
 
   <!-- المحاضرة الثانية -->
   <div class="camp-box">

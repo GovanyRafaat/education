@@ -65,3 +65,31 @@ body::before{content:'';position:fixed;inset:0;background-image:radial-gradient(
 
 /* responsive */
 @media(max-width:900px){.cards{flex-direction:column;padding:12px}.hero h2{font-size:1.4rem}}
+
+
+/* --- مودال عرض الفيديو الجديد --- */
+.video-modal {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.85);
+  display: none;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+}
+
+.video-box {
+  width: 80%;
+  height: 80%;
+  background: #000;
+  position: relative;
+}
+
+.close-btn {
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  color: #fff;
+  font-size: 22px;
+  cursor: pointer;
+}

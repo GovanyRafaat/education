@@ -19,6 +19,22 @@ document.addEventListener('DOMContentLoaded', ()=>{
 
 
 // ===============================
+//      👇 مودال عرض فيديو يوتيوب
+// ===============================
+function openYoutubeVideo(element){
+    const videoUrl = element.getAttribute("data-video");
+    const iframe = document.getElementById("youtubeFrame");
+    iframe.src = videoUrl;
+    document.getElementById("videoModal").style.display = "flex";
+}
+
+function closeVideo(){
+    document.getElementById("youtubeFrame").src = "";
+    document.getElementById("videoModal").style.display = "none";
+}
+
+
+// ===============================
 //      👇 إضافة الأعضاء يدويًا
 // ===============================
 // أضف الأسماء الجديدة هنا فقط
